@@ -5,7 +5,7 @@
     <nav aria-label="breadcrumb" style="font-size: 18pt;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/admin/categorias') }}">Sucursales</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/sucursales') }}">Sucursales</a></li>
             <li class="breadcrumb-item active" aria-current="page">Listado de Sucursales</li>
         </ol>
     </nav>
@@ -19,7 +19,7 @@
                     <h3 class="card-title"><b>Sucursales Registradas</b></h3>
 
                     <div class="card-tools">
-                        <a class="btn btn-primary" href="{{ url('admin/categorias/create') }}">Crear nuevo</a>
+                        <a class="btn btn-primary" href="{{ url('admin/sucursales/create') }}">Crear nuevo</a>
                     </div>
                     <!-- /.card-tools -->
                 </div>
@@ -43,7 +43,13 @@
                                     <td>{{ $sucursal->nombre }}</td>
                                     <td>{{ $sucursal->direccion }}</td>
                                     <td>{{ $sucursal->telefono }}</td>
-                                    <td>{{ $sucursal->estado }}</td>
+                                    <td style="text-align: center;">
+                                        @if ($sucursal->activa == '1')
+                                            <span class="badge badge-success">Activo</span>
+                                        @else
+                                            <span class="badge badge-danger">Inactivo</span>
+                                        @endif
+                                    </td>
                                     <td style="text-align: center;">
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a href="{{ url('/admin/sucursales/' . $sucursal->id) }}"
@@ -51,11 +57,11 @@
                                             <a href="{{ url('/admin/sucursales/' . $sucursal->id . '/edit') }}"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                             <form id="miformulario{{$sucursal->id}}" action="{{ url('/admin/sucursales/' . $sucursal->id) }}" method="POST"
-                                                class="formEliminar">
+                                                class="d-inliner">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="preguntar{{ $sucursal->id }}(event))"><i
+                                                    onclick="preguntar{{ $sucursal->id }}(event)"><i
                                                         class="fas fa-trash-alt"></i> Eliminar</button>
                                             </form>
                                             <script>
@@ -65,7 +71,7 @@
                                                     Swal.fire({
                                                         title: "Desea Eliminar el registro?",
                                                         text: "",
-                                                        icon: "quiestion",
+                                                        icon: "question",
                                                         showCancelButton: true,
                                                         confirmButtonColor: "#3085d6",
                                                         cancelButtonColor: "#d33",
@@ -158,10 +164,10 @@
                 "pageLength": 10,
                 "language": {
                     "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Categorias",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Sucursales",
                     "infoEmpty": "Mostrando 0 a 0 de 0 Estudiantes",
-                    "infoFiltered": "(Filtrado de _MAX_ total Categorias)",
-                    "lengthMenu": "Mostrar _MENU_ Categorias",
+                    "infoFiltered": "(Filtrado de _MAX_ total Sucursales)",
+                    "lengthMenu": "Mostrar _MENU_ Sucursales",
                     "loadingRecords": "Cargando...",
                     "processing": "Procesando...",
                     "search": "Buscador:",

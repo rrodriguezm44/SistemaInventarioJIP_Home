@@ -24,7 +24,7 @@ Route::delete('admin/categoria/{id}', [App\Http\Controllers\CategoriaController:
 Route::get('admin/sucursales', [App\Http\Controllers\SucursalController::class, 'index'])->name('sucursales.index')->middleware('auth');
 Route::get('admin/sucursales/create', [App\Http\Controllers\SucursalController::class, 'create'])->name('sucursales.create')->middleware('auth');
 Route::post('admin/sucursales/create', [App\Http\Controllers\SucursalController::class, 'store'])->name('sucursales.store')->middleware('auth');
-Route::get('admin/sucursal/{id}', [App\Http\Controllers\SucursalController::class, 'show'])->name('sucursales.show')->middleware('auth');
-Route::get('admin/sucursal/{id}/edit', [App\Http\Controllers\SucursalController::class, 'edit'])->name('sucursales.edit')->middleware('auth');
-Route::put('admin/sucursal/{id}', [App\Http\Controllers\SucursalController::class, 'update'])->name('sucursales.update')->middleware('auth');
-Route::delete('admin/sucursal/{id}', [App\Http\Controllers\SucursalController::class, 'destroy'])->name('sucursales.destroy')->middleware('auth');  
+Route::get('admin/sucursales/{id}', [App\Http\Controllers\SucursalController::class, 'show'])->name('sucursales.show')->middleware('auth');
+Route::get('admin/sucursales/{id}/edit', [App\Http\Controllers\SucursalController::class, 'edit'])->name('sucursales.edit')->middleware('auth');
+Route::put('admin/sucursales/{id}', [App\Http\Controllers\SucursalController::class, 'update'])->name('sucursales.update')->middleware('auth');
+Route::delete('admin/sucursales/{id}', [App\Http\Controllers\SucursalController::class, 'destroy'])->name('sucursales.destroy')->middleware('auth');  

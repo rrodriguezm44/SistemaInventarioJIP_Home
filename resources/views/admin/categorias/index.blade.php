@@ -47,11 +47,11 @@
                                             <a href="{{ url('/admin/categoria/' . $categoria->id . '/edit') }}"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
                                             <form id="miformulario{{$categoria->id}}" action="{{ url('/admin/categoria/' . $categoria->id) }}" method="POST"
-                                                class="formEliminar">
+                                                class="d-inline">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"
-                                                    onclick="preguntar{{ $categoria->id }}(event))"><i
+                                                    onclick="preguntar{{ $categoria->id }}(event)"><i
                                                         class="fas fa-trash-alt"></i> Eliminar</button>
                                             </form>
                                             <script>
