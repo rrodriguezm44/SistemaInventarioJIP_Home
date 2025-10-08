@@ -255,7 +255,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <a href="{{ url('admin/sucursales') }}" class="btn btn-danger">Cancelar</a>
+                                        <a href="{{ url('admin/productos') }}" class="btn btn-danger">Cancelar</a>
                                         <button type="submit" class="btn btn-success">Guardar</button>
                                     </div>
                                 </div>

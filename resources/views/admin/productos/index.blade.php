@@ -47,16 +47,18 @@
                             @foreach ($productos as $producto)
                                 <tr>
                                     <td style="text-align: center">{{ $loop->iteration }}</td>
-                                    <td>{{ $producto->categoria_id }}</td>
+                                    <td>{{ $producto->categoria->nombre }}</td>
                                     <td>{{ $producto->codigo }}</td>
                                     <td>{{ $producto->nombre }}</td>
-                                    <td>{{ $producto->descripcion }}</td>
-                                    <td>{{ $producto->imagen }}</td>
+                                    <td>{!! $producto->descripcion!!}</td>
+                                    <td>
+                                        <img src="{{ asset('storage/'.$producto->imagen)}}" alt="{{$producto->nombre}}" class="img-thumbnail" style="width: 50px; heigth: 50px;">
+                                    </td>
                                     <td>{{ $producto->precio_compra }}</td>
                                     <td>{{ $producto->precio_venta }}</td>
                                     <td>{{ $producto->stock_minimo }}</td>
                                     <td>{{ $producto->stock_maximo }}</td>
-                                    <td>{{ $producto->unida_medida }}</td>
+                                    <td>{{ $producto->unidad_medida }}</td>
 
                                     <td style="text-align: center;">
                                         @if ($producto->estado == '1')
