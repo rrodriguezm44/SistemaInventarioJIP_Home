@@ -19,7 +19,7 @@
                     <h3 class="card-title"><b>Productos Registrados</b></h3>
 
                     <div class="card-tools">
-                        <a class="btn btn-primary" href="{{ url('admin/productos/create') }}">Crear nuevo</a>
+                        <a class="btn btn-primary" href="{{ url('admin/productos/create') }}">Nuevo Producto</a>
                     </div>
                     <!-- /.card-tools -->
                 </div>

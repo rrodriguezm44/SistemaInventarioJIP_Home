@@ -34,7 +34,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-tags"></i></span>
                                                 </div>
-                                                <select name="" id="" class="form-control" required>
+                                                <select name="categoria_id" id="categoria_id" class="form-control" required>
                                                     <option value="">-- Seleccione una Categoria --</option>
                                                     @foreach ($categorias as $categoria)
                                                         <option value="{{ $categoria->id }}"
@@ -175,7 +175,7 @@
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text"><i class="fas fa-arrow-up"></i></span>
                                                 </div>
-                                                <select name="" id="" class="form-control">
+                                                <select name="unidad_medida" id="unidad_medida" class="form-control">
                                                     <option value="">Seleccione U. Medida</option>
                                                     <option value="uni">Unidad</option>
                                                     <option value="kg">Kg</option>
