@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Categoria;
 use App\Models\Sucursal;
 use App\Models\Producto;
+use App\Models\Proveedor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,6 +20,7 @@ class DatabaseSeeder extends Seeder
         Sucursal::factory(10)->create();
         Categoria::factory(50)->create();
         Producto::factory(200)->create();
+        Proveedor::factory(20)->create();
         
         User::factory()->create([
             'name' => 'Admin',
