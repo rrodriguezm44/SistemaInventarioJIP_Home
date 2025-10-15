@@ -19,4 +19,9 @@ class Proveedor extends Model
         'telefono',
         'email',
     ];
+
+    public function lotes()
+    {
+        return $this->hasMany(Lote::class);
+    }
 }

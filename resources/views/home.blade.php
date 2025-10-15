@@ -7,7 +7,22 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+
+    <div class="col-md-3 col-sm-6 col-12">
+        <div class="info-box">
+            <span class="info-box-icon bg-info">
+                <img src="{{ url('/img/edificio.gif')}}" alt="">
+            </span>
+
+            <div class="info-box-content">
+                <span class="info-box-text"><b>Sucursales</b></span>
+                <span class="info-box-number">{{ $total_sucursales }} Sucursales</span>
+            </div>
+            <!-- /.info-box-content -->
+        </div>
+        <!-- /.info-box -->
+    </div>
+
 @stop
 
 @section('css')

@@ -173,15 +173,239 @@
                                     <td>{{ $proveedor->telefono }}</td>
                                     <td>{{ $proveedor->email }}</td>
 
-                                    <td style="text-align: center;">
+                                    <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="{{ url('/admin/proveedor/' . $proveedor->id) }}"
-                                                class="btn btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                            <a href="{{ url('/admin/proveedor/' . $proveedor->id . '/edit') }}"
-                                                class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                                            <form id="miformulario{{ $proveedor->id }}"
-                                                action="{{ url('/admin/proveedores/' . $proveedor->id) }}" method="POST"
-                                                class="d-inliner">
+
+                                            <!-- Button trigger modal Mostrar-->
+                                            <button type="button" class="btn btn-info" data-toggle="modal"
+                                                data-target="#ModalShow">
+                                                <i class="fas fa-eye"></i> Ver
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="ModalShow" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header"
+                                                            style="background-color: #1017a4; color: white;">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Datos del
+                                                                Proveedor
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+
+                                                            <div class="row">
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="empresa">Nombre de la Empresa <<
+                                                                                /label>
+                                                                                <p>{{ $proveedor->empresa }}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="direccion">Dirección
+                                                                            <b>(*)</b></label>
+                                                                        <p>{{ $proveedor->direccion }}</p>
+                                                                    </div>
+                                                                </div>
+
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="telefono">Teléfono </label>
+                                                                        <p>{{ $proveedor->telefono }}</p>
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-md-12">
+                                                                    <div class="form-group">
+                                                                        <label for="email">Email</label>
+                                                                        <p>{{ $proveedor->email }}</p>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row">
+                                                                    <div class="col md-12">
+                                                                        <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">Volver</butto>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Button trigger modal Editar-->
+                                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#ModalEdit{{ $proveedor->id}}">
+                                                <i class="fas fa-pencil-alt"></i>Editar
+                                            </button>
+
+                                            <!-- Modal -->
+                                            <div class="modal fade" id="ModalEdit{{ $proveedor->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header"
+                                                            style="background-color: #375e0a; color: white;">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Editar Proveedor
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form action="{{ url('/admin/proveedor/'.$proveedor->id) }}" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <div class="row">
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="empresa">Nombre de la Empresa
+                                                                                <b>(*)</b></label>
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                            class="fas fa-building"></i></span>
+                                                                                </div>
+                                                                                <input type="text"
+                                                                                    value="{{ old('empresa',$proveedor->empresa) }}"
+                                                                                    class="form-control" id="empresa"
+                                                                                    name="empresa"
+                                                                                    placeholder="Ingrese el nombre de la empresa"
+                                                                                    required>
+                                                                            </div>
+                                                                            @error('empresa')
+                                                                                <div class="alert alert-danger">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="direccion">Dirección
+                                                                                <b>(*)</b></label>
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                            class="fas fa-map"></i></span>
+                                                                                </div>
+                                                                                <input type="text"
+                                                                                    value="{{ old('direccion',$proveedor->direccion) }}"
+                                                                                    class="form-control" id="direccion"
+                                                                                    name="direccion"
+                                                                                    placeholder="Ingrese la Dirección"
+                                                                                    required>
+                                                                            </div>
+                                                                            @error('direccion')
+                                                                                <div class="alert alert-danger">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="nombre">Nombre Proveedor
+                                                                                <b>(*)</b></label>
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                            class="fas fa-user"></i></span>
+                                                                                </div>
+                                                                                <input type="text"
+                                                                                    value="{{ old('nombre',$proveedor->nombre) }}"
+                                                                                    class="form-control" id="nombre"
+                                                                                    name="nombre"
+                                                                                    placeholder="Ingrese el nombre de la Sucursal"
+                                                                                    required>
+                                                                            </div>
+                                                                            @error('nombre')
+                                                                                <div class="alert alert-danger">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="telefono">Teléfono
+                                                                                <b>(*)</b></label>
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                            class="fas fa-phone"></i></span>
+                                                                                </div>
+                                                                                <input type="text"
+                                                                                    value="{{ old('telefono',$proveedor->telefono) }}"
+                                                                                    class="form-control" id="telefono"
+                                                                                    name="telefono"
+                                                                                    placeholder="Ingrese el número de Telefono"
+                                                                                    required>
+                                                                            </div>
+                                                                            @error('telefono')
+                                                                                <div class="alert alert-danger">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <label for="email">Email <b>(*)</b></label>
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i
+                                                                                            class="fas fa-envelope"></i></span>
+                                                                                </div>
+                                                                                <input type="email"
+                                                                                    value="{{ old('email',$proveedor->email) }}"
+                                                                                    class="form-control" id="email"
+                                                                                    name="email"
+                                                                                    placeholder="Ingrese el número de Telefono"
+                                                                                    required>
+                                                                            </div>
+                                                                            @error('email')
+                                                                                <div class="alert alert-danger">
+                                                                                    {{ $message }}</div>
+                                                                            @enderror
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                    <div class="row">
+                                                                        <div class="col md-12">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary"
+                                                                                data-dismiss="modal">Cancelar</button>
+                                                                            <button type="submit"
+                                                                                class="btn btn-success">Actualizar</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="modal-footer">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <form id="miformulario{{ $proveedor->id }}" action="{{ url('/admin/proveedor/' . $proveedor->id) }}" method="POST" class="d-inliner">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"
@@ -282,6 +506,16 @@
 @stop
 
 @section('js')
+    @if($errors->any())
+    <script>
+        @if (session('modal_id'))
+            var modalId = "{{session('modal_id')}}";
+            $('#ModalEdit' + modalId ).modal('show');
+        @else
+            $('#ModalCreate').modal('show');
+        @endif
+    </script>
+    @endif
     <script>
         $(function() {
             $("#example1").DataTable({
@@ -335,4 +569,5 @@
             }).buttons().container().appendTo('#example1_wrapper .row:eq(0)');
         });
     </script>
+    
 @stop
