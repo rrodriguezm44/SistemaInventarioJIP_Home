@@ -36,4 +36,14 @@ class Lote extends Model
         return $this->hasMany(InventarioSucursalLote::class);
     }
 
+    public function movimientosInventario()
+    {
+        return $this->hasMany(MovimientoInventario::class);
+    }
+
+    public function detalleCompras()
+    {
+        return $this->hasMany(DetalleCompra::class);
+    }
+
 }

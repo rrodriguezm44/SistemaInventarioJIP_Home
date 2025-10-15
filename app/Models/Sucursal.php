@@ -24,4 +24,9 @@ class Sucursal extends Model
         return $this->hasMany(InventarioSucursalLote::class);
     
     }
+
+    public function movimientosInventario()
+    {
+        return $this->hasMany(MovimientoInventario::class);
+    }
 }

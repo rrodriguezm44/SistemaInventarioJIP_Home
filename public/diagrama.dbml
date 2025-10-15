@@ -52,9 +52,38 @@ Table Lotes {
 }
 
 Table Inventario_Sucursal_lote {
-
   id int [pk, increment]
   lote_id int [ref: > Lotes.id]
   sucursal_id int [ref: > sucursals.id]
   cantidad_en_sucursal int [not null]
+}
+
+Table Movimientos_Inventario {
+  id int [pk, increment]
+  producto_id int [ref: > Productos.id]
+  lote_id int [ref: > Lotes.id]
+  sucursal_id int [ref: > sucursals.id]
+  tipo_movimiento varchar(50) [not null]
+  cantidad int [not null]
+  fecha datetime  [default: 'CURRENT_TIMESTAMP']
+  observaciones text
+}
+
+Table Compras {
+  id int [pk, increment]
+  proveedor_id int [ref: > Proveedores.id]
+  fecha datetime [default: 'CURRENT_TIMESTAMP']
+  total decimal(10,2) [not null]
+  estado varchar (50) [default: 'pendiente']
+  observaciones text
+}
+
+Table Detalle_Compras {
+  id int [pk, increment]
+  compra_id int [ref: > Compras.id]
+  producto_id int [ref: > Productos.id]
+  lote_id int [ref: > Lotes.id]
+  cantidad int [not null]
+  precio_unitario decimal(10,2) [not null]
+  subtotal decimal(10,2) [not null]
 }
