@@ -107,8 +107,5 @@
 @endpush
 
 @push('js')
-<script>
-        $('.select2').select2();
-    </script>
     @livewireScripts
 @endpush

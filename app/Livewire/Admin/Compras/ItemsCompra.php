@@ -44,7 +44,7 @@ class ItemsCompra extends Component
 
     public function cargarDatos()
     {
-        $this->compra->load('detalles.producto','detalles.lote');
+        $this->compra->load('detalles.producto', 'detalles.lote');
         $this->totalCompra = $this->compra->detalles->sum('subtotal');
 
         $this->reset([
@@ -63,13 +63,28 @@ class ItemsCompra extends Component
     protected $rules = [
         'productoId' => 'required',
         'cantidad' => 'required',
-        'precioUnitario' => 'required',
+        'precioCompra' => 'required',
+        'precioVenta' => 'required',
         'codigoLote' => 'required',
         'fechaVencimiento' => 'required',
     ];
 
+    public function updatedproductoId($value){
+       
+        $producto = Producto::find($value);
+        
+        if($producto){
+            $this->precioCompra = $producto->precio_compra;
+            $this->precioVenta = $producto->precio_venta;
+        }else{
+            $this->reset(['precioCompra', 'precioVenta']);
+        }
+
+    }
+
 
     public function agregarItems(){
+       
         $this->validate();
         
         DB::beginTransaction();
@@ -96,11 +111,12 @@ class ItemsCompra extends Component
                 'producto_id' => $producto->id,
                 'lote_id' => $loteId,
                 'cantidad' => $this->cantidad,
-                'precio_unitario' => $this->precioUnitario,
-                'subtotal' => $this->cantidad * $this->precioUnitario,
+                'precio_unitario' => $this->precioCompra,
+                'subtotal' => $this->cantidad * $this->precioCompra,
             ]);
 
            //recalcular el total del acompra y lo guardamos
+           $this->compra->load('detalles');
            $this->compra->total = $this->compra->detalles->sum('subtotal');
            $this->compra->save();
 
@@ -132,11 +148,19 @@ class ItemsCompra extends Component
         
         DB::beginTransaction();
         try{
-           
+            //busca y elimina el item del produco
             $detalle = DetalleCompra::find($detalleId);
+
+            //borrar el lote del detalle de productos
+            $lote_id = $detalle->lote_id;
+            $lote = Lote::find($lote_id);
+            $lote->delete();
+
             $detalle -> delete();
 
+
             //recalcular el total del acompra y lo guardamos
+            $this->compra->load('detalles');
             $this->compra->total = $this->compra->detalles->sum('subtotal');
             $this->compra->save();
                 
