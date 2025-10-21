@@ -7,6 +7,9 @@ use App\Models\Producto;
 use App\Models\Proveedor;
 use App\Models\Sucursal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CompraProveedorMail;
+
 
 class CompraController extends Controller
 {
@@ -55,5 +58,24 @@ class CompraController extends Controller
     $sucursales = Sucursal::all();
     return view('admin.compras.edit',compact('compra','proveedores','sucursales','productos'));
    }
+
+   public function enviarCorreo(Compra $compra){
+
+    $compra->load('detalles.producto','proveedor');
+
+    $compra->estado = 'Enviado al proveedor';
+
+    $compra->save();
+
+    $proveedorEmail = $compra->proveedor->email;
+
+    Mail::to($proveedorEmail)->send(new CompraProveedorMail($compra));
+    
+    return redirect()->route('compras.edit', $compra->id) 
+    ->with('mensaje', 'Correo enviado exitosamente al proveedor')
+    ->with('icono', 'success');
+   }
+
+   
     
 }

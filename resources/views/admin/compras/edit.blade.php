@@ -54,12 +54,9 @@
                                     </div>
                                 </div>
 
-                                {{-- <div class="col-md-2">
-                                    <div class="form-group">
-                                        <label for="total">Total de la Compra</label>
-                                        <p>{{ $compra->total }}</p>
-                                    </div>
-                                </div> --}}
+                                <div class="col-md-2">
+
+                                </div>
 
                             </div>
 
@@ -86,7 +83,7 @@
                 <!-- /.card-header -->
                 <div class="card-body" style="display: block;">
 
-                   <livewire:admin.compras.items-compra :compra="$compra" />
+                    <livewire:admin.compras.items-compra :compra="$compra" />
 
                 </div>
                 <!-- /.card-body -->
@@ -94,14 +91,25 @@
             <!-- /.card -->
         </div>
     </div>
-    
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <a href="{{ route('compras.enviarCorreo', $compra) }}" class="btn btn-primary"><i
+                        class="fas fa-envelope"></i> Enviar correo al proveedor</a>
+                <a href="" class="btn btn-success">Finalizar Compra</a>
+            </div>
+        </div>
+    </div>
+
+
 @stop
 
 @push('css')
-<style>
-    .select2-container .select2-selection--single {
-        height: 40px !important;
-    }
+    <style>
+        .select2-container .select2-selection--single {
+            height: 40px !important;
+        }
     </style>
     @livewireStyles
 @endpush

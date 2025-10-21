@@ -9,7 +9,8 @@
                             <div class="input-group-prepend">
                                 <span class="input-group-text"><i class="fas fa-box"></i></span>
                             </div>
-                            <select name="" id="" wire:model.live='productoId' class="form-control select2">
+                            <select name="" id="" wire:model.live='productoId'
+                                class="form-control select2">
                                 <option value="">Seleccione un producto...</option>
                                 @foreach ($productos as $producto)
                                     <option value="{{ $producto->id }}">
@@ -100,6 +101,14 @@
                     </div>
                 </div>
 
+                <div class="col-md-6">
+                    <div style="height: 33px"></div>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block" wire:click="agregarItems">Agregar</button>
+                    </div>
+                </div>
+
+
             </div>
         </div>
         <div class="col md 8">
@@ -152,10 +161,7 @@
     <div class="row">
 
         <div class="col-md-1">
-            <div style="height: 33px"></div>
-            <div class="form-group">
-                <button class="btn btn-primary" wire:click="agregarItems">Agregar</button>
-            </div>
+
         </div>
 
 
