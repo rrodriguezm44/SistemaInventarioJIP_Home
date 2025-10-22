@@ -41,6 +41,54 @@
             </div>
             <!-- /.info-box -->
         </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ url('/admin/productos') }}">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/bolsa-de-la-compra.gif') }}" alt="">
+                    </span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Productos</b></span>
+                    <span class="info-box-number">{{ $total_productos }} Productos</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ url('/admin/proveedores') }}">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/camion-de-reparto.gif') }}" alt="">
+                    </span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Proveedores</b></span>
+                    <span class="info-box-number">{{ $total_proveedores }} Proveedores</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ url('/admin/compras') }}">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/carro-de-la-compra.gif') }}" alt="">
+                    </span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Compras</b></span>
+                    <span class="info-box-number">{{ $total_compras }} Compras</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
     </div>
 @stop
 

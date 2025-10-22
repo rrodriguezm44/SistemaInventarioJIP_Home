@@ -345,7 +345,13 @@ return [
             'classes' => 'bg-blue text-white',
             'active' => ['admin/compra*']
         ],
-
+         [
+            'text' => 'Lotes',
+            'url' => 'admin/lotes',
+            'icon' => 'fas fa-fw fa-boxes',
+            'classes' => 'bg-blue text-white',
+            'active' => ['admin/lote*']
+        ],
 
     ],
 
