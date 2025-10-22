@@ -94,13 +94,55 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="form-group">
-                <a href="{{ route('compras.enviarCorreo', $compra) }}" class="btn btn-primary"><i
-                        class="fas fa-envelope"></i> Enviar correo al proveedor</a>
-                <a href="" class="btn btn-success">Finalizar Compra</a>
+            <div class="card card-primary">
+                <div class="card-header">
+                    <h3 class="card-title"><b>Paso 3 | Finalizar Compra </b></h3>
+                    <!-- /.card-tools -->
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body" style="display: block;">
+                    <form action="{{ route('compras.finalizarCompra', $compra) }}" method="POST">
+                        @csrf
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="sucursal_id">Sucursales <b style="color: red">(*)</b></label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                                        </div>
+                                        <select name="sucursal_id" id="" class="form-control" required>
+                                            <option value="">-- Seleccione una Sucursal --</option>
+                                            @foreach ($sucursales as $sucursal)
+                                                <option value="{{ $sucursal->id }}"
+                                                    {{ old('sucursal_id') == $sucursal->id ? 'selected' : '' }}>
+                                                    {{ $sucursal->nombre }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    @error('sucursal_id')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <hr>
+                                <div class="form-group">
+                                    <a href="{{ route('compras.enviarCorreo', $compra) }}" class="btn btn-primary"><i
+                                            class="fas fa-envelope"></i> Enviar correo al proveedor</a>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> Finalizar Compra</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card-body -->
             </div>
+            <!-- /.card -->
         </div>
     </div>
+
+
 
 
 @stop
