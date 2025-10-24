@@ -47,6 +47,7 @@ Route::delete('admin/proveedor/{id}', [App\Http\Controllers\ProveedorController:
 //rutas para compras
 Route::get('admin/compras', [App\Http\Controllers\CompraController::class, 'index'])->name('compras.index')->middleware('auth');
 Route::get('admin/compras/create', [App\Http\Controllers\CompraController::class, 'create'])->name('compras.create')->middleware('auth');
+Route::get('admin/compra/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('compras.show')->middleware('auth');
 Route::post('admin/compras/create', [App\Http\Controllers\CompraController::class, 'store'])->name('compras.store')->middleware('auth');
 Route::get('admin/compra/{id}/edit', [App\Http\Controllers\CompraController::class, 'edit'])->name('compras.edit')->middleware('auth');
 Route::get('admin/compra/{compra}/enviar-correo', [App\Http\Controllers\CompraController::class, 'enviarCorreo'])->name('compras.enviarCorreo')->middleware('auth');
@@ -58,3 +59,6 @@ Route::get('/admin/lotes', [App\Http\Controllers\LoteController::class, 'index']
 //rutas para inventario por lotes
 Route::get('/admin/inventario/sucursales_por_lotes',[App\Http\Controllers\InventarioSucursalLoteController::class, 'index'])->name('sucursales_por_lotes.index')->middleware('auth');
 Route::get('/admin/inventario/inventario_por_sucursal/sucursal/{id}',[App\Http\Controllers\InventarioSucursalLoteController::class, 'mostrar_inventario_por_sucursal'])->name('mostrar_inventario_por_sucursal.show')->middleware('auth');
+
+//rutas para inventarios - historial de moviemiento
+Route::get('/admin/inventario/movimientos',[App\Http\Controllers\MovimientoInventarioController::class, 'index'])->name('movimientos.index')->middleware('auth');
