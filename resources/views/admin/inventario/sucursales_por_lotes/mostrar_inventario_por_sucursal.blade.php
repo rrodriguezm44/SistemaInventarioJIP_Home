@@ -5,8 +5,8 @@
     <nav aria-label="breadcrumb" style="font-size: 18pt;">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ url('/admin') }}">Inicio</a></li>
-            <li class="breadcrumb-item"><a href="{{ url('/admin/lotes') }}">Lotes</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Listado de Lotes</li>
+            <li class="breadcrumb-item"><a href="{{ url('/admin/inventario/sucursales_por_lotes') }}">Inventario por Sucursal</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Sucursal {{ $sucursal->nombre}}</li>
         </ol>
     </nav>
 @stop
@@ -16,7 +16,8 @@
         <div class="col-md-12">
             <div class="card card-outline card-primary">
                 <div class="card-header">
-                    <h3 class="card-title"><b>Lotes Registrados</b></h3>
+                    <h3 class="card-title"><b>Inventario Registrado</b></h3>
+
                     <!-- /.card-tools -->
                 </div>
                 <!-- /.card-header -->
@@ -25,31 +26,24 @@
                         <thead>
                             <tr>
                                 <th>Nro</th>
-                                <th>Codigo de Lote</th>
+                                <th>Lote</th>
                                 <th>Producto</th>
-                                <th>Provedor</th>
+                                <th>Cantidad en Sucursal</th>
                                 <th>Fecha de Entrada</th>
-                                <th>Fecha de vencimiento</th>
-                                <th>Cantidad Aatual</th>
-                                <th>Estado</th>
+                                <th>Fecha de Vencimiento</th>
+                                <th>Proveedor</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($lotes as $lote)
-                                <tr class="{{ $lote->is_expired ? 'table-danger' : ''}}">
+                            @foreach ($inventario_sucursal_lotes as $item)
+                                <tr>
                                     <td style="text-align: center">{{ $loop->iteration }}</td>
-                                    <td>{{ $lote->codigo_lote }}</td>
-                                    <td>{{ $lote->producto->nombre }}</td>
-                                    <td>{{ $lote->proveedor->nombre }}</td>
-                                    <td>{{ $lote->fecha_entrada }}</td>
-                                    <td>{{ $lote->fecha_vencimiento }}</td>
-                                    <td>{{ $lote->cantidad_actual }}</td>
-                                    <td>
-                                      @if ($lote->is_expired)
-                                          <span class="badge badge-danger">Vencido</span>
-                                      @else
-                                          <span class="badge badge-success">Vigente</span>
-                                      @endif
+                                    <td>{{ $item->lote->codigo_lote }}</td>
+                                    <td>{{ $item->lote->producto->nombre }}</td>
+                                    <td>{{ $item->cantidad_en_sucursal }}</td>
+                                    <td>{{ $item->lote->fecha_entrada }}</td>
+                                    <td>{{ $item->lote->fecha_vencimiento }}</td>
+                                    <td>{{ $item->lote->proveedor->nombre }}</td>
                                     </td>
                                 </tr>
                             @endforeach
@@ -128,10 +122,10 @@
                 "pageLength": 10,
                 "language": {
                     "emptyTable": "No hay información",
-                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Lotes",
-                    "infoEmpty": "Mostrando 0 a 0 de 0 Productos",
-                    "infoFiltered": "(Filtrado de _MAX_ total Lotes)",
-                    "lengthMenu": "Mostrar _MENU_ Lotes",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Categorias",
+                    "infoEmpty": "Mostrando 0 a 0 de 0 Estudiantes",
+                    "infoFiltered": "(Filtrado de _MAX_ total Categorias)",
+                    "lengthMenu": "Mostrar _MENU_ Categorias",
                     "loadingRecords": "Cargando...",
                     "processing": "Procesando...",
                     "search": "Buscador:",

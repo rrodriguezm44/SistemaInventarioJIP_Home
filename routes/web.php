@@ -53,5 +53,8 @@ Route::get('admin/compra/{compra}/enviar-correo', [App\Http\Controllers\CompraCo
 Route::post('admin/compra/{compra}/finalizar-compra', [App\Http\Controllers\CompraController::class, 'finalizarCompra'])->name('compras.finalizarCompra')->middleware('auth');
 
 //rutas para lotes
-Route::get('admin/lotes', [App\Http\Controllers\LoteController::class, 'index'])->name('lotes.index')->middleware('auth');
+Route::get('/admin/lotes', [App\Http\Controllers\LoteController::class, 'index'])->name('lotes.index')->middleware('auth');
 
+//rutas para inventario por lotes
+Route::get('/admin/inventario/sucursales_por_lotes',[App\Http\Controllers\InventarioSucursalLoteController::class, 'index'])->name('sucursales_por_lotes.index')->middleware('auth');
+Route::get('/admin/inventario/inventario_por_sucursal/sucursal/{id}',[App\Http\Controllers\InventarioSucursalLoteController::class, 'mostrar_inventario_por_sucursal'])->name('mostrar_inventario_por_sucursal.show')->middleware('auth');

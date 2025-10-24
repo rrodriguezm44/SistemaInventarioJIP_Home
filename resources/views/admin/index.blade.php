@@ -89,6 +89,22 @@
             </div>
             <!-- /.info-box -->
         </div>
+
+        <div class="col-md-3 col-sm-6 col-12">
+            <div class="info-box">
+                <a href="{{ url('/admin/lotes') }}">
+                    <span class="info-box-icon bg-info">
+                        <img src="{{ url('/img/notificaciones.gif') }}" alt="">
+                    </span>
+                </a>
+                <div class="info-box-content">
+                    <span class="info-box-text"><b>Lotes Vencidos</b></span>
+                    <span class="info-box-number">{{ $total_lotes_vencidos }} Lotes</span>
+                </div>
+                <!-- /.info-box-content -->
+            </div>
+            <!-- /.info-box -->
+        </div>
     </div>
 @stop
 

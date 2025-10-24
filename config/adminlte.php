@@ -345,12 +345,21 @@ return [
             'classes' => 'bg-blue text-white',
             'active' => ['admin/compra*']
         ],
-         [
-            'text' => 'Lotes',
-            'url' => 'admin/lotes',
+        [
+            'text' => 'Inventario',
             'icon' => 'fas fa-fw fa-boxes',
             'classes' => 'bg-blue text-white',
-            'active' => ['admin/lote*']
+            'active' => ['admin/inventario*'],
+            'submenu' => [
+              [
+                    'text' => 'Lotes',
+                    'url' => 'admin/lotes',
+              ], 
+              [
+                    'text' => 'Sucursales por Lotes',
+                    'url' => 'admin/inventario/sucursales_por_lotes',
+              ],
+            ],
         ],
 
     ],
