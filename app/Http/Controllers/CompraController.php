@@ -164,4 +164,34 @@ class CompraController extends Controller
 
         return view('admin.compras.show', compact('compra','sucursal_destino'));
     }
+
+    public function destroy($id)
+    {
+
+        $compra =Compra::with('detalles')->findOrFail($id);
+        //return response()->json($compra);
+
+        DB::beginTransaction();
+            try{
+            
+                foreach($compra->detalles as $detalle){
+                    $lote = $detalle->lote;
+                    $lote->delete();
+                    $detalle->delete();
+                }
+                $compra->delete();
+
+                DB::commit();
+
+                return redirect()->route('compras.index') 
+                        ->with('mensaje', 'La xompra se elimino exitosamente')
+                        ->with('icono', 'success');
+
+            }catch(\Exception $e){
+                
+                DB::rollBack();
+                dd('error al eliminar compra '.$e->getMessage());
+
+            }
+    }
 }

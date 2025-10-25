@@ -45,13 +45,15 @@ Route::put('admin/proveedor/{id}', [App\Http\Controllers\ProveedorController::cl
 Route::delete('admin/proveedor/{id}', [App\Http\Controllers\ProveedorController::class, 'destroy'])->name('proveedores.destroy')->middleware('auth');
 
 //rutas para compras
-Route::get('admin/compras', [App\Http\Controllers\CompraController::class, 'index'])->name('compras.index')->middleware('auth');
-Route::get('admin/compras/create', [App\Http\Controllers\CompraController::class, 'create'])->name('compras.create')->middleware('auth');
-Route::get('admin/compra/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('compras.show')->middleware('auth');
-Route::post('admin/compras/create', [App\Http\Controllers\CompraController::class, 'store'])->name('compras.store')->middleware('auth');
-Route::get('admin/compra/{id}/edit', [App\Http\Controllers\CompraController::class, 'edit'])->name('compras.edit')->middleware('auth');
-Route::get('admin/compra/{compra}/enviar-correo', [App\Http\Controllers\CompraController::class, 'enviarCorreo'])->name('compras.enviarCorreo')->middleware('auth');
-Route::post('admin/compra/{compra}/finalizar-compra', [App\Http\Controllers\CompraController::class, 'finalizarCompra'])->name('compras.finalizarCompra')->middleware('auth');
+Route::get('/admin/compras', [App\Http\Controllers\CompraController::class, 'index'])->name('compras.index')->middleware('auth');
+Route::get('/admin/compras/create', [App\Http\Controllers\CompraController::class, 'create'])->name('compras.create')->middleware('auth');
+Route::get('/admin/compra/{id}', [App\Http\Controllers\CompraController::class, 'show'])->name('compras.show')->middleware('auth');
+Route::post('/admin/compras/create', [App\Http\Controllers\CompraController::class, 'store'])->name('compras.store')->middleware('auth');
+Route::get('/admin/compra/{id}/edit', [App\Http\Controllers\CompraController::class, 'edit'])->name('compras.edit')->middleware('auth');
+Route::get('/admin/compra/{compra}/enviar-correo', [App\Http\Controllers\CompraController::class, 'enviarCorreo'])->name('compras.enviarCorreo')->middleware('auth');
+Route::post('/admin/compra/{compra}/finalizar-compra', [App\Http\Controllers\CompraController::class, 'finalizarCompra'])->name('compras.finalizarCompra')->middleware('auth');
+Route::delete('/admin/compra/{id}', [App\Http\Controllers\CompraController::class, 'destroy'])->name('compras.destroy')->middleware('auth');
+
 
 //rutas para lotes
 Route::get('/admin/lotes', [App\Http\Controllers\LoteController::class, 'index'])->name('lotes.index')->middleware('auth');

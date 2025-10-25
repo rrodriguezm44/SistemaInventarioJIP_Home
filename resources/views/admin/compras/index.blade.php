@@ -49,37 +49,42 @@
                                         <div class="btn-group" role="group" aria-label="Basic example">
                                             <a href="{{ url('/admin/compra/' . $compra->id) }}"
                                                 class="btn btn-info"><i class="fas fa-eye"></i> Ver</a>
-                                            <a href="{{ url('/admin/compra/' . $compra->id . '/edit') }}"
+                                            @if ($compra->estado != 'Finalizada')
+                                                <a href="{{ url('/admin/compra/' . $compra->id . '/edit') }}"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i> Editar</a>
-                                            <form id="miformulario{{$compra->id}}" action="{{ url('/admin/compra/' . $compra->id) }}" method="POST"
-                                                class="d-inliner">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="preguntar{{ $compra->id }}(event)"><i
-                                                        class="fas fa-trash-alt"></i> Eliminar</button>
-                                            </form>
-                                            <script>
-                                                function preguntar{{ $compra->id }}(event) {
-                                                    event.preventDefault(); // Evita que el formulario se envíe automáticamente
-                                                    
-                                                    Swal.fire({
-                                                        title: "Desea Eliminar el registro?",
-                                                        text: "",
-                                                        icon: "question",
-                                                        showCancelButton: true,
-                                                        confirmButtonColor: "#3085d6",
-                                                        cancelButtonColor: "#d33",
-                                                        confirmButtonText: "Si, eliminar!",
-                                                        denyButtonText: `No, cancelar!`,
-                                                    }).then((result) => {
-                                                        if (result.isConfirmed) {
+                                            @endif
+                                            @if ($compra->estado != 'Finalizada')
+                                                <form id="miformulario{{$compra->id}}" action="{{ url('/admin/compra/' . $compra->id) }}" method="POST"
+                                                    class="d-inliner">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger"
+                                                        onclick="preguntar{{ $compra->id }}(event)"><i
+                                                            class="fas fa-trash-alt"></i> Eliminar</button>
+                                                </form>
 
-                                                            document.getElementById("miformulario{{$compra->id}}").submit();
-                                                        }
-                                                    });
-                                                }
-                                            </script>
+                                                <script>
+                                                    function preguntar{{ $compra->id }}(event) {
+                                                        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+                                                        
+                                                        Swal.fire({
+                                                            title: "Desea Eliminar el registro?",
+                                                            text: "",
+                                                            icon: "question",
+                                                            showCancelButton: true,
+                                                            confirmButtonColor: "#3085d6",
+                                                            cancelButtonColor: "#d33",
+                                                            confirmButtonText: "Si, eliminar!",
+                                                            denyButtonText: `No, cancelar!`,
+                                                        }).then((result) => {
+                                                            if (result.isConfirmed) {
+
+                                                                document.getElementById("miformulario{{$compra->id}}").submit();
+                                                            }
+                                                        });
+                                                    }
+                                                </script>
+                                            @endif
                                         </div>
                                     </td>
                                 </tr>

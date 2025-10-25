@@ -12,6 +12,47 @@
 @stop
 
 @section('content')
+<div class="row">
+    <div class="col-md-12">
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"><b>Filtrado de datos</b></h3>
+                <!-- /.card-tools -->
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body" style="display: block;">
+                <form action="{{ url('/admin/lotes') }}" method="get">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">Desde:</label>
+                                <input type="date" class="form-control" name="fecha_desde">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="">Hast:</label>
+                                <input type="date" class="form-control" name="fecha_hasta">
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary" style="margin-top: 32px;">
+                                    <i class="fas fa-filter"></i>Filtrar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
     <div class="row">
         <div class="col-md-12">
             <div class="card card-outline card-primary">
@@ -30,6 +71,7 @@
                                 <th>Provedor</th>
                                 <th>Fecha de Entrada</th>
                                 <th>Fecha de vencimiento</th>
+                                <th>Dias restantes</th>
                                 <th>Cantidad Aatual</th>
                                 <th>Estado</th>
                             </tr>
@@ -43,13 +85,16 @@
                                     <td>{{ $lote->proveedor->nombre }}</td>
                                     <td>{{ $lote->fecha_entrada }}</td>
                                     <td>{{ $lote->fecha_vencimiento }}</td>
+                                    <td>{{ $lote->days_to_expire }} dias</td>
                                     <td>{{ $lote->cantidad_actual }}</td>
                                     <td>
-                                      @if ($lote->is_expired)
-                                          <span class="badge badge-danger">Vencido</span>
-                                      @else
-                                          <span class="badge badge-success">Vigente</span>
-                                      @endif
+                                        @if ($lote->is_expired)
+                                            <span class="badge badge-danger">Vencido</span>
+                                        @elseif ($lote->days_to_expire <= 10)
+                                            <span class="badge badge-warning">Por caducar</span>
+                                        @else
+                                            <span class="badge badge-success">Vigente</span>
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach
